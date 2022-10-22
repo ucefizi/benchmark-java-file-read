@@ -13,8 +13,8 @@ public class RunBenchMarks {
 
     private static final Map<Thread, Task> benchMarkThreads = new HashMap<>();
 
-    private static void initialise() {
-        File file = new File("random-junk.in");
+    private static void initialise(String fileName) {
+        File file = new File(fileName);
 
         System.out.printf("Using file at path '%s' with size %d kb%n", file.getAbsolutePath(), file.length()/1024);
 
@@ -33,7 +33,7 @@ public class RunBenchMarks {
 
     public static void main(String[] args) throws InterruptedException {
 
-        initialise();
+        initialise(args[0]);
 
         for (Thread thread: benchMarkThreads.keySet()) {
             System.out.printf("Starting %s thread%n", benchMarkThreads.get(thread).getName());
