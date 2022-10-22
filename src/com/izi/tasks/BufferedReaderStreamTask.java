@@ -1,21 +1,21 @@
 package com.izi.tasks;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.List;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class BufferedReaderStreamTask extends ReadTask{
-    public BufferedReaderStreamTask() {
+    public BufferedReaderStreamTask(File file) {
         setName("BufferedReaderStream");
+        setLines(new ArrayList<>());
+        setFile(file);
     }
 
     @Override
-    public void read() {
-        InputStream input = this.getClass().getResourceAsStream("random-junk.in");
+    public void read() throws FileNotFoundException {
+        InputStream input = new FileInputStream(getFile());
         InputStreamReader inf = new InputStreamReader(input);
         BufferedReader br = new BufferedReader(inf, 1024*1024);
-        List<String> lines = br.lines().collect(Collectors.toList());
+        getLines().addAll(br.lines().collect(Collectors.toList()));
     }
 }

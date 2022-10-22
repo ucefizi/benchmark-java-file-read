@@ -1,7 +1,9 @@
 package com.izi.tasks;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.Instant;
+import java.util.List;
 
 public interface Task extends Runnable {
 
@@ -22,4 +24,8 @@ public interface Task extends Runnable {
     void setRunTime(long runTime);
     String getName();
     void setName(String name);
+    List<String> getLines();
+    void setLines(List<String> lines);
+    File getFile();
+    void setFile(File file);
 }

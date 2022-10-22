@@ -1,25 +1,26 @@
 package com.izi.tasks;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ScannerTask extends ReadTask{
 
-    public ScannerTask() {
+    public ScannerTask(File file) {
         setName("Scanner");
+        setLines(new ArrayList<>());
+        setFile(file);
     }
 
     @Override
-    public void read() {
-        InputStream input = this.getClass().getResourceAsStream("random-junk.in");
+    public void read() throws FileNotFoundException {
+        InputStream input = new FileInputStream(getFile());
         InputStreamReader inf = new InputStreamReader(input);
         Scanner sc = new Scanner(inf);
-        String in = sc.nextLine();
 
-        int size;
-        for(size = 1; sc.hasNext(); ++size) {
-            in = sc.nextLine();
+        while (sc.hasNext()) {
+            String in = sc.nextLine();
+            getLines().add(in);
         }
     }
 }
