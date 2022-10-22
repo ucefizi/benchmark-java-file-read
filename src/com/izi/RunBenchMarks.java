@@ -5,7 +5,7 @@ import com.izi.tasks.BufferedReaderStreamTask;
 import com.izi.tasks.ScannerTask;
 import com.izi.tasks.Task;
 
-public class Main {
+public class RunBenchMarks {
 
     public static void main(String[] args) throws InterruptedException {
 
