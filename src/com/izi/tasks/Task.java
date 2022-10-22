@@ -3,20 +3,24 @@ package com.izi.tasks;
 import java.io.File;
 import java.io.IOException;
 import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public interface Task extends Runnable {
 
     @Override
     default void run() {
-        long starMillis = Instant.now().toEpochMilli();
+        long starMicros = ChronoUnit.MICROS.between(Instant.EPOCH, Instant.now());
+
         try {
             read();
         } catch (IOException e) {
+            System.out.printf("Exception: %s%n", e.getMessage());
             e.printStackTrace();
         }
-        long endMillis = Instant.now().toEpochMilli();
-        setRunTime(endMillis - starMillis);
+
+        long endMicros = ChronoUnit.MICROS.between(Instant.EPOCH, Instant.now());
+        setRunTime(endMicros - starMicros);
     }
 
     void read() throws IOException;

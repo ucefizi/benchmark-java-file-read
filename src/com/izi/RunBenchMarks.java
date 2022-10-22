@@ -16,7 +16,7 @@ public class RunBenchMarks {
     private static void initialise() {
         File file = new File("random-junk.in");
 
-        System.out.println("Using file at path: " + file.getAbsolutePath());
+        System.out.printf("Using file at path '%s' with size %d kb%n", file.getAbsolutePath(), file.length()/1024);
 
         Task scannerTask = new ScannerTask(file.getAbsoluteFile());
         Thread scannerThread = new Thread(scannerTask);
@@ -36,13 +36,18 @@ public class RunBenchMarks {
         initialise();
 
         for (Thread thread: benchMarkThreads.keySet()) {
-            System.out.println("Starting " + benchMarkThreads.get(thread).getName() + " thread");
+            System.out.printf("Starting %s thread%n", benchMarkThreads.get(thread).getName());
             thread.start();
         }
 
         for (Thread thread: benchMarkThreads.keySet()) {
             thread.join();
-            System.out.println(benchMarkThreads.get(thread).getName() + " thread took " + benchMarkThreads.get(thread).getRunTime() + " ms to read " + benchMarkThreads.get(thread).getLines().size() + " lines");
+            System.out.printf(
+                    "%s thread took %s µs to read %s lines%n",
+                    benchMarkThreads.get(thread).getName(),
+                    benchMarkThreads.get(thread).getRunTime(),
+                    benchMarkThreads.get(thread).getLines().size()
+            );
         }
     }
 }

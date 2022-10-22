@@ -12,12 +12,12 @@ Improvements coming, like:
 
 * Create a file in the project root named `random-junk.in` with random data and desired size for the test
 * Run main to get numbers, like so:
-  ```log
-  Using file at path: /path/to/random-junk.in
-  Starting Scanner thread
+  ```bash
+  Using file at path '/path/to/random-junk.in' with size 2147106 kb
   Starting BufferedReaderStream thread
   Starting BufferedReaderLineByLine thread
-  Scanner thread took 11522 ms to read 19998 lines
-  BufferedReaderStream thread took 1372 ms to read 19998 lines
-  BufferedReaderLineByLine thread took 1372 ms to read 19998 lines
+  Starting Scanner thread
+  BufferedReaderStream thread took 3027999 µs to read 29998 lines
+  BufferedReaderLineByLine thread took 3027999 µs to read 29998 lines
+  Scanner thread took 25471500 µs to read 29998 lines
   ```
