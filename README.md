@@ -8,7 +8,7 @@ Improvements coming, like:
 * configurable file names,
 * option to read more than one file, and read whole directories
 
-## how to use
+## How to use
 
 * Create a file in the project root named `random-junk.in` with random data and desired size for the test
 * Run main to get numbers, like so:
@@ -21,3 +21,6 @@ Improvements coming, like:
   BufferedReaderLineByLine thread took 3027999 µs to read 29998 lines
   Scanner thread took 25471500 µs to read 29998 lines
   ```
+## Releases
+
+Check [releases](https://github.com/ucefizi/benchmark-java-file-read/releases) to download a built version
