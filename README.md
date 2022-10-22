@@ -13,10 +13,11 @@ Improvements coming, like:
 * Create a file in the project root named `random-junk.in` with random data and desired size for the test
 * Run main to get numbers, like so:
   ```log
-  running scanner with line by line
-  running Buffered Reader with stream
-  running Buffered Reader with line by line
-  Scanner with line by line took 10778 ms
-  Buffered Reader with stream took 1227 ms
-  Buffered Reader with line by line took 1226 ms
+  Using file at path: /path/to/random-junk.in
+  Starting Scanner thread
+  Starting BufferedReaderStream thread
+  Starting BufferedReaderLineByLine thread
+  Scanner thread took 11522 ms to read 19998 lines
+  BufferedReaderStream thread took 1372 ms to read 19998 lines
+  BufferedReaderLineByLine thread took 1372 ms to read 19998 lines
   ```
