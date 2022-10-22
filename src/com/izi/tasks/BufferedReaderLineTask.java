@@ -14,7 +14,7 @@ public class BufferedReaderLineTask extends ReadTask{
         String in = br.readLine();
 
         int size;
-        for(size = 1; in != null && !"".equals(in); ++size) {
+        for(size = 0; in != null && !"".equals(in); ++size) {
             in = br.readLine();
         }
     }
