@@ -6,6 +6,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class BufferedReaderLineTask extends ReadTask{
+    public BufferedReaderLineTask() {
+        setName("BufferedReaderLineByLine");
+    }
+
     @Override
     public void read() throws IOException {
         InputStream input = this.getClass().getResourceAsStream("random-junk.in");

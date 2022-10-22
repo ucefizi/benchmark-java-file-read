@@ -5,32 +5,39 @@ import com.izi.tasks.BufferedReaderStreamTask;
 import com.izi.tasks.ScannerTask;
 import com.izi.tasks.Task;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class RunBenchMarks {
+
+    private static final Map<Thread, Task> benchMarkThreads = new HashMap<>();
+
+    private static void initialise() {
+        Task scannerTask = new ScannerTask();
+        Thread scannerThread = new Thread(scannerTask);
+        benchMarkThreads.put(scannerThread, scannerTask);
+
+        Task bufferedReaderStreamTask = new BufferedReaderStreamTask();
+        Thread bufferedReaderStreamThread = new Thread(bufferedReaderStreamTask);
+        benchMarkThreads.put(bufferedReaderStreamThread, bufferedReaderStreamTask);
+
+        Task bufferedReaderLineTask = new BufferedReaderLineTask();
+        Thread bufferedReaderLineThread = new Thread(bufferedReaderLineTask);
+        benchMarkThreads.put(bufferedReaderLineThread, bufferedReaderLineTask);
+    }
 
     public static void main(String[] args) throws InterruptedException {
 
-        System.out.println("running scanner with line by line");
-        Task scannerTask = new ScannerTask();
-        Thread scannerThread = new Thread(scannerTask);
-        scannerThread.start();
+        initialise();
 
-        System.out.println("running Buffered Reader with stream");
-        Task bufferedReaderStreamTask = new BufferedReaderStreamTask();
-        Thread bufferedReaderStreamThread = new Thread(bufferedReaderStreamTask);
-        bufferedReaderStreamThread.start();
+        for (Thread thread: benchMarkThreads.keySet()) {
+            System.out.println("Starting " + benchMarkThreads.get(thread).getName() + " thread");
+            thread.start();
+        }
 
-        System.out.println("running Buffered Reader with line by line");
-        Task bufferedReaderLineTask = new BufferedReaderLineTask();
-        Thread bufferedReaderLineThread = new Thread(bufferedReaderLineTask);
-        bufferedReaderLineThread.start();
-
-        scannerThread.join();
-        System.out.println("Scanner with line by line took " + scannerTask.getRunTime() + " ms");
-
-        bufferedReaderStreamThread.join();
-        System.out.println("Buffered Reader with stream took " + bufferedReaderStreamTask.getRunTime() + " ms");
-
-        bufferedReaderLineThread.join();
-        System.out.println("Buffered Reader with line by line took " + bufferedReaderLineTask.getRunTime() + " ms");
+        for (Thread thread: benchMarkThreads.keySet()) {
+            thread.join();
+            System.out.println(benchMarkThreads.get(thread).getName() + " thread took " + benchMarkThreads.get(thread).getRunTime() + " ms");
+        }
     }
 }

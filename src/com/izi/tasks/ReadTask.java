@@ -4,6 +4,7 @@ import java.io.IOException;
 
 public abstract class ReadTask implements Task{
     private long runTime;
+    private String name;
 
     @Override
     public abstract void read() throws IOException;
@@ -16,5 +17,15 @@ public abstract class ReadTask implements Task{
     @Override
     public  void setRunTime(long runTime){
         this.runTime = runTime;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
     }
 }

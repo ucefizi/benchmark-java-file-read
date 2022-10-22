@@ -5,6 +5,11 @@ import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class ScannerTask extends ReadTask{
+
+    public ScannerTask() {
+        setName("Scanner");
+    }
+
     @Override
     public void read() {
         InputStream input = this.getClass().getResourceAsStream("random-junk.in");
